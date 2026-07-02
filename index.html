@@ -3,399 +3,422 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Sahpar Nil Özer — nanofabrication and semiconductor engineering, and the things I build.">
-<title>Sahpar Nil Özer</title>
+<meta name="description" content="Sahpar Nil Özer — nanofabrication and semiconductor engineering. 1,100+ hours of Class-100 cleanroom work: CVD, e-beam lithography, ALD, RIE.">
+<title>Sahpar Nil Özer — Nanofabrication &amp; Semiconductor Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A1424;
-    --bg2:#0C1A2E;
-    --panel:#0F1E33;
-    --card:#13243C;
-    --ink:#E7EEF7;
-    --soft:#90A4BF;
-    --line:#23364F;
-    --blue:#5AA9FF;
-    --cyan:#38BDF8;
-    --glow:rgba(90,169,255,.18);
-    --display:'Space Grotesk',sans-serif;
-    --body:'Newsreader',Georgia,serif;
-    --mono:'Space Mono',ui-monospace,monospace;
+    --bg:#F6F8FA;          /* cleanroom white, cool cast */
+    --ink:#131C28;          /* deep instrument navy */
+    --steel:#5D6B7A;
+    --hairline:#DEE4EA;
+    --amber:#1D5FBF;        /* wafer blue — links & markers */
+    --amber-soft:#E2ECF9;   /* soft blue tint for result tags */
+    --card:#FFFFFF;
+    --max:980px;
+    --rail:160px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--body);
-    font-size:18px;line-height:1.6;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background:var(--bg);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
   }
-  a{color:inherit}
   img{display:block;max-width:100%}
-  ::selection{background:var(--blue);color:var(--bg)}
-  .wrap{width:min(1080px,90vw);margin:0 auto}
+  ::selection{background:var(--amber-soft)}
+  a{color:var(--amber);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+  a:hover{border-bottom-color:var(--amber)}
+  a:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+  .mono{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.04em;color:var(--steel)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
 
-  /* instrument strip */
-  .strip{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--soft);background:#06101E;border-bottom:1px solid var(--line);padding:7px 0}
-  .strip .wrap{display:flex;gap:24px;align-items:center;white-space:nowrap;overflow:hidden}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);flex:none;
-    box-shadow:0 0 8px var(--cyan);animation:pulse 2.4s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(56,189,248,.6)}70%{box-shadow:0 0 0 7px rgba(56,189,248,0)}100%{box-shadow:0 0 0 0 rgba(56,189,248,0)}}
-  .strip b{color:var(--ink);font-weight:700}
+  /* ---------- header ---------- */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(246,248,250,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--hairline)}
+  .header-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+  .header-name{font-weight:600;font-size:15px;letter-spacing:-.01em}
+  nav a{color:var(--ink);font-size:14px;margin-left:24px}
+  nav a:hover{color:var(--amber)}
+  @media(max-width:640px){nav a{margin-left:13px;font-size:13px}}
 
-  /* nav */
-  nav{position:sticky;top:0;z-index:50;background:rgba(10,20,36,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-  .mark{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.04em}
-  .mark s{color:var(--blue);text-decoration:none}
-  .nav-links{display:flex;gap:26px;align-items:center}
-  .nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--soft);transition:color .2s}
-  .nav-links a:hover{color:var(--ink)}
-  .latest{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;
-    text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--panel);transition:border-color .2s,transform .2s}
-  .latest:hover{border-color:var(--blue);transform:translateY(-1px)}
-  .latest .dot{margin:0}
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 52px}
+  .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(32px,5.4vw,48px);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+  .hero .role{margin-top:14px;font-size:clamp(16px,2.2vw,19px);color:var(--steel);max-width:540px}
+  .hero .role strong{color:var(--ink);font-weight:500}
+  .portrait{border:1px solid var(--hairline);border-radius:4px;overflow:hidden;background:var(--card)}
+  .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .portrait figcaption{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--steel);padding:8px 12px;border-top:1px solid var(--hairline)}
+  @media(max-width:720px){.hero-grid{grid-template-columns:1fr;gap:32px}.portrait{max-width:340px}}
 
-  /* hero */
-  header{position:relative;padding:80px 0 60px;overflow:hidden}
-  header::before{content:"";position:absolute;top:-120px;right:-120px;width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle,var(--glow),transparent 70%);pointer-events:none}
-  .hero-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:48px;align-items:center;position:relative}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px}
-  h1{font-family:var(--display);font-weight:600;font-size:clamp(40px,6.4vw,76px);line-height:.98;letter-spacing:-.02em;margin-bottom:22px}
-  h1 em{font-style:normal;background:linear-gradient(120deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lede{font-size:clamp(19px,2.1vw,23px);max-width:30ch;color:var(--ink)}
-  .lede b{color:var(--blue);font-weight:500}
-  .quote{margin-top:30px;padding-left:18px;border-left:2px solid var(--blue);font-style:italic;color:var(--soft);font-size:18px;max-width:34ch}
-  .quote cite{display:block;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:8px;color:var(--ink)}
-  .socials{display:flex;gap:18px;margin-top:30px;flex-wrap:wrap}
-  .socials a{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:2px;transition:.2s}
-  .socials a:hover{color:var(--ink);border-color:var(--blue)}
+  .datastrip{margin-top:40px;display:flex;flex-wrap:wrap;gap:10px 32px;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:14px 0}
+  .datastrip .cell{display:flex;align-items:baseline;gap:8px}
+  .datastrip .num{font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .datastrip .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--steel)}
 
-  /* hero portrait */
-  .portrait{position:relative}
-  .portrait .frame{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel);
-    box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
-  .portrait .frame img{width:100%;height:auto;aspect-ratio:760/940;object-fit:cover}
-  .portrait .wafer{position:absolute;width:150px;bottom:-26px;left:-26px;opacity:.9}
-  .portrait .wafer .spin{transform-origin:center;animation:rot 60s linear infinite}
-  @keyframes rot{to{transform:rotate(360deg)}}
+  .cta-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;font-size:14px;font-weight:500;padding:10px 20px;border-radius:3px;border:1px solid var(--ink);color:var(--ink);transition:background .15s,color .15s}
+  .btn:hover{background:var(--ink);color:var(--bg);border-bottom-color:var(--ink)}
+  .btn.primary{background:var(--ink);color:var(--bg)}
+  .btn.primary:hover{background:#1D5FBF;border-color:#1D5FBF}
+  .cta-links{display:flex;gap:20px;margin-left:4px}
+  .cta-links a{font-size:14px;color:var(--steel)}
+  .cta-links a:hover{color:var(--amber)}
 
-  .readout{margin-top:54px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;
-    display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--soft)}
-  .readout b{color:var(--cyan);font-weight:700}
+  /* ---------- sections ---------- */
+  section{padding:56px 0;border-top:1px solid var(--hairline)}
+  .sec-grid{display:grid;grid-template-columns:var(--rail) 1fr;gap:32px}
+  .sec-label{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);padding-top:4px;position:sticky;top:80px;align-self:start}
+  .sec-label::before{content:"— ";color:var(--amber)}
+  @media(max-width:720px){.sec-grid{grid-template-columns:1fr;gap:18px}.sec-label{position:static}}
 
-  /* sections */
-  section{padding:72px 0;border-top:1px solid var(--line)}
-  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
-  .sec-no{font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:.06em}
-  .sec-title{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.01em}
-  .sec-sub{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:40px}
+  /* ---------- experience log entries ---------- */
+  .entry{padding:22px 0}
+  .entry+.entry{border-top:1px solid var(--hairline)}
+  .entry .meta{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.05em;color:var(--steel)}
+  .entry .meta .sep{color:var(--amber);margin:0 8px}
+  .entry h3{margin-top:6px;font-size:18px;font-weight:600;letter-spacing:-.015em}
+  .entry p{margin-top:8px;color:#3A403D;max-width:620px;font-size:15.5px}
+  .entry .result{margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);background:var(--amber-soft);display:inline-block;padding:3px 10px;border-radius:2px}
 
-  .about p{max-width:62ch;font-size:20px;margin-bottom:18px}
-  .about p:last-child{margin-bottom:0}
-  .about a{color:var(--cyan);text-decoration:none;border-bottom:1px solid var(--line)}
-  .about a:hover{border-color:var(--cyan)}
-
-  /* project cards w/ photo */
-  .group-label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin:0 0 22px;display:flex;align-items:center;gap:12px}
-  .group-label::after{content:"";height:1px;background:var(--line);flex:1}
-  .group-label:not(:first-of-type){margin-top:54px}
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;
-    transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-  .card:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 16px 40px -22px rgba(90,169,255,.5)}
-  .thumb{aspect-ratio:800/460;overflow:hidden;border-bottom:1px solid var(--line);background:var(--panel)}
-  .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+  /* ---------- project cards with photos ---------- */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--hairline);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .18s,box-shadow .18s}
+  .card:hover{border-color:#A9C4E8;box-shadow:0 10px 28px -18px rgba(29,95,191,.3)}
+  .thumb{aspect-ratio:800/460;overflow:hidden;border-bottom:1px solid var(--hairline);background:var(--bg)}
+  .thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
   .thumb.ogs img{object-position:left center}
-  .card:hover .thumb img{transform:scale(1.04)}
-  .card .body{padding:20px 22px 18px;display:flex;flex-direction:column;flex:1}
-  .card .idx{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:.06em}
-  .card h3{font-family:var(--display);font-weight:600;font-size:21px;line-height:1.15;margin:6px 0 4px;letter-spacing:-.01em}
-  .card .role{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
-  .card p{font-size:17px;color:var(--ink);margin-bottom:16px;flex:1}
-  .stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-  .stack span{font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--soft);border:1px solid var(--line);border-radius:3px;padding:2px 7px;background:var(--bg2)}
-  .card .link{font-family:var(--mono);font-size:12px;letter-spacing:.03em;text-transform:uppercase;text-decoration:none;color:var(--cyan);align-self:flex-start;border-bottom:1px solid transparent;transition:.2s}
-  .card .link:hover{border-color:var(--blue);color:var(--blue)}
-  .card .link::after{content:" ↗";opacity:.6}
+  .card .body{padding:18px 20px 18px;display:flex;flex-direction:column;flex:1}
+  .card .meta{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.05em;color:var(--steel)}
+  .card .meta .sep{color:var(--amber);margin:0 7px}
+  .card h3{margin-top:5px;font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .card h3 a{color:var(--ink)}
+  .card h3 a:hover{color:var(--amber)}
+  .card p{margin-top:7px;font-size:14.5px;color:#3A403D;flex:1}
+  .card .result{margin-top:12px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink);background:var(--amber-soft);align-self:flex-start;padding:3px 10px;border-radius:2px}
+  .group-label{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--steel);margin:0 0 16px;display:flex;align-items:center;gap:12px}
+  .group-label::after{content:"";height:1px;background:var(--hairline);flex:1}
+  .group-label+.cards{margin-bottom:40px}
+  .cards:last-child{margin-bottom:0}
 
-  /* foundations */
-  .roots{list-style:none;border-top:1px solid var(--line)}
-  .roots li{border-bottom:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:.5fr 1.5fr 1.2fr;gap:18px;align-items:baseline}
-  .roots .yr{font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:.04em}
-  .roots .what{font-family:var(--display);font-weight:500;font-size:18px}
-  .roots .where{font-size:16px;color:var(--soft)}
+  /* ---------- foundations ---------- */
+  .roots{list-style:none;border-top:1px solid var(--hairline)}
+  .roots li{border-bottom:1px solid var(--hairline);padding:14px 0;display:grid;grid-template-columns:1.2fr 1.8fr;gap:18px;align-items:baseline}
+  .roots .what{font-weight:600;font-size:15.5px}
+  .roots .where{font-size:14.5px;color:var(--steel)}
+  @media(max-width:640px){.roots li{grid-template-columns:1fr;gap:2px}}
 
-  /* beyond */
-  .beyond-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-  .tile .timg{aspect-ratio:640/420;overflow:hidden;border-bottom:1px solid var(--line)}
-  .tile .timg img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-  .tile:hover .timg img{transform:scale(1.04)}
-  .tile .tbody{padding:20px 22px 22px}
-  .tile h4{font-family:var(--display);font-weight:600;font-size:18px;margin-bottom:8px}
-  .tile p{font-size:16px;color:var(--soft)}
-  .tile .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:10px}
+  /* ---------- beyond ---------- */
+  .beyond-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+  @media(max-width:720px){.beyond-grid{grid-template-columns:1fr}}
+  .tile{background:var(--card);border:1px solid var(--hairline);border-radius:4px;overflow:hidden}
+  .tile .timg{aspect-ratio:640/420;overflow:hidden;border-bottom:1px solid var(--hairline)}
+  .tile .timg img{width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
+  .tile .tbody{padding:16px 18px 18px}
+  .tile .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--steel);display:block;margin-bottom:6px}
+  .tile h4{font-size:15.5px;font-weight:600;margin-bottom:5px}
+  .tile p{font-size:14px;color:#3A403D}
 
-  /* contact */
-  #contact{background:linear-gradient(180deg,var(--bg2),#06101E);border-top:1px solid var(--line)}
-  #contact .big{font-family:var(--display);font-weight:600;font-size:clamp(28px,4.4vw,52px);letter-spacing:-.02em;line-height:1.05;margin:8px 0 32px;max-width:18ch}
-  #contact .big a{background:linear-gradient(120deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;border-bottom:2px solid var(--blue);transition:.2s}
-  #contact .big a:hover{opacity:.85}
-  .clinks{display:flex;flex-wrap:wrap;gap:14px 28px}
-  .clinks a{font-family:var(--mono);font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink);opacity:.8;border-bottom:1px solid transparent;padding-bottom:2px;transition:.2s}
-  .clinks a:hover{opacity:1;border-color:var(--blue)}
-  footer{padding:22px 0;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--soft);opacity:.6;border-top:1px solid var(--line)}
+  /* ---------- contact / footer ---------- */
+  .contact-big{font-size:clamp(20px,3.2vw,27px);font-weight:600;letter-spacing:-.02em;max-width:24ch}
+  .contact-sub{margin-top:10px;color:var(--steel);max-width:560px;font-size:15.5px}
+  footer{border-top:1px solid var(--hairline);padding:24px 0 46px}
+  .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
-  /* entrance */
-  .rise{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-  .d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}.d4{animation-delay:.29s}.d5{animation-delay:.37s}
-  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 
-  @media(max-width:820px){
-    .hero-grid{grid-template-columns:1fr;gap:40px}
-    .portrait{max-width:380px}
-    .cards,.beyond-grid{grid-template-columns:1fr}
-    .roots li{grid-template-columns:1fr;gap:4px}
-    .nav-links a:not(.latest){display:none}
-    .strip .wrap{font-size:10px;gap:16px}
-  }
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}.rise{opacity:1;transform:none}}
+  /* ---------- cleanroom facility rails ---------- */
+  .rail{position:fixed;top:0;bottom:0;width:56px;pointer-events:none;z-index:40;display:none}
+  .rail.left{left:0;border-right:1px solid var(--hairline)}
+  .rail.right{right:0;border-left:1px solid var(--hairline)}
+  /* HEPA grille mesh */
+  .rail::before{content:"";position:absolute;inset:0;opacity:.85;
+    background:
+      repeating-linear-gradient(0deg,rgba(29,95,191,.14) 0 1px,transparent 1px 7px),
+      repeating-linear-gradient(90deg,rgba(29,95,191,.14) 0 1px,transparent 1px 7px)}
+  /* laminar airflow, drifting downward */
+  .rail::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;
+    background:repeating-linear-gradient(180deg,rgba(29,95,191,.35) 0 10px,transparent 10px 26px);
+    animation:laminar 7s linear infinite}
+  @keyframes laminar{to{background-position:0 26px}}
+  .rail .rlabel{position:absolute;left:50%;transform:translateX(-50%);
+    writing-mode:vertical-rl;font-family:"IBM Plex Mono",monospace;font-size:10px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--steel);
+    background:var(--bg);padding:10px 2px}
+  .rail .rlabel.top{top:96px}
+  .rail .rlabel.bottom{bottom:48px}
+  /* litho bay: amber-lit segment on the right rail */
+  .rail .litho{position:absolute;left:0;right:0;top:34%;height:26%;
+    background:linear-gradient(180deg,transparent,rgba(199,154,46,.16) 18%,rgba(199,154,46,.16) 82%,transparent);
+    border-top:1px dashed rgba(169,106,0,.35);border-bottom:1px dashed rgba(169,106,0,.35)}
+  .rail .litho .rlabel{top:50%;transform:translate(-50%,-50%);color:#8A6210;background:transparent}
+  @media(min-width:900px){.rail{display:block}}
+
+  /* ---------- FFU ceiling strip (always visible) ---------- */
+  .ceiling{position:relative;height:26px;border-bottom:1px solid var(--hairline);
+    background:
+      repeating-linear-gradient(90deg,rgba(29,95,191,.16) 0 1px,transparent 1px 7px),
+      repeating-linear-gradient(0deg,rgba(29,95,191,.16) 0 1px,transparent 1px 7px),
+      linear-gradient(180deg,#EDF2F8,#F6F8FA)}
+  /* amber litho-bay panel in the ceiling */
+  .ceiling .litho-panel{position:absolute;top:0;bottom:0;left:58%;width:20%;
+    background:linear-gradient(180deg,rgba(214,164,49,.32),rgba(214,164,49,.14));
+    border-left:1px dashed rgba(169,106,0,.5);border-right:1px dashed rgba(169,106,0,.5)}
+  .ceiling .clabel{position:absolute;top:50%;transform:translateY(-50%);left:28px;
+    font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--steel);background:rgba(246,248,250,.85);padding:1px 7px}
+  .ceiling .clabel.amberlbl{left:auto;right:24%;color:#8A6210}
+  @media(max-width:640px){.ceiling .clabel{display:none}}
 </style>
 </head>
 <body>
 
-<div class="strip">
-  <div class="wrap">
-    <span class="dot"></span>
-    <span>VINSE · Class&#8209;100 cleanroom</span>
-    <span>status&nbsp;<b>ACTIVE</b></span>
-    <span>process&nbsp;<b>CVD&nbsp;graphene&nbsp;//&nbsp;transfer</b></span>
-    <span>loc&nbsp;<b>Nashville, TN</b></span>
-  </div>
+<div class="rail left" aria-hidden="true">
+  <span class="rlabel top">FFU-01 · laminar flow ↓</span>
+  <span class="rlabel bottom">Class 100 · ISO 5</span>
+</div>
+<div class="rail right" aria-hidden="true">
+  <span class="rlabel top">FFU-02 · laminar flow ↓</span>
+  <div class="litho"><span class="rlabel">litho bay · amber</span></div>
+  <span class="rlabel bottom">particle count · nominal</span>
 </div>
 
-<nav>
-  <div class="wrap">
-    <span class="mark">SAHPAR&nbsp;NIL&nbsp;<s>ÖZER</s></span>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#beyond">Beyond</a>
-      <a class="latest" href="#work"><span class="dot"></span>Latest&nbsp;·&nbsp;graphene&#8209;on&#8209;Au&nbsp;transfer</a>
-    </div>
-  </div>
-</nav>
+<div class="ceiling" aria-hidden="true">
+  <span class="clabel">FFU array · laminar flow ↓ · Class 100</span>
+  <div class="litho-panel"></div>
+  <span class="clabel amberlbl">litho bay</span>
+</div>
 
-<header>
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow rise d1">Nanofabrication &amp; semiconductor engineering</p>
-      <h1 class="rise d2">I build at the<br><em>nanoscale.</em></h1>
-      <p class="lede rise d3">Graphene devices, the <b>fabs</b> that make them, and the <b>tools</b> that run the fab. Senior cleanroom technician at VINSE, Vanderbilt.</p>
-      <blockquote class="quote rise d4">
-        Lose your first fifty games as quickly as possible.
-        <cite>— Go proverb</cite>
-      </blockquote>
-      <div class="socials rise d4">
-        <a href="https://sahparozer.vercel.app" target="_blank" rel="noopener">Portfolio</a>
-        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#" target="_blank" rel="noopener">GitHub</a>
-        <a href="#" target="_blank" rel="noopener">Instagram</a>
-      </div>
-    </div>
-    <div class="portrait rise d3">
-      <div class="frame">
-        <!-- replace images/hero.jpg with your portrait -->
-        <img src="hero.jpg" alt="Sahpar Nil Özer">
-      </div>
-      <svg class="wafer" viewBox="0 0 200 200" aria-hidden="true">
-        <g class="spin">
-          <circle cx="100" cy="100" r="84" fill="#0A1424" stroke="#5AA9FF" stroke-width="2"/>
-          <circle cx="100" cy="100" r="62" fill="none" stroke="#38BDF8" stroke-width="1" opacity=".7"/>
-          <circle cx="100" cy="100" r="40" fill="none" stroke="#23364F" stroke-width="1"/>
-          <line x1="16" y1="100" x2="184" y2="100" stroke="#23364F" stroke-width="1"/>
-          <line x1="100" y1="16" x2="100" y2="184" stroke="#23364F" stroke-width="1"/>
-          <path d="M100 16 A84 84 0 0 1 168 60" fill="none" stroke="#5AA9FF" stroke-width="3"/>
-          <circle cx="100" cy="100" r="6" fill="#5AA9FF"/>
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="readout rise d5">
-      <span><b>1,100+</b> cleanroom hrs</span>
-      <span><b>4</b> interns supervised</span>
-      <span>CVD</span><span>e&#8209;beam litho</span><span>ALD</span><span>RIE</span>
-      <span>graphene growth + transfer</span>
-      <span>RTL→GDSII</span>
-    </div>
+<header class="site">
+  <div class="wrap header-inner">
+    <div class="header-name">Sahpar Nil Özer</div>
+    <nav aria-label="Main">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#beyond">Beyond</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 </header>
 
-<section id="about" class="about">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-no">01</span><h2 class="sec-title">About</h2></div>
-    <p class="sec-sub">who · what · why</p>
-    <p>I'm an engineer who likes the hands-on end of hardware. At VINSE — Vanderbilt's nanofabrication facility — I run CVD graphene growth and transfer, e-beam lithography, ALD, and RIE in a Class&#8209;100 cleanroom, support 20+ researchers, and supervise a team of four. I rebuilt our CVD reactor and cut its leak rate roughly tenfold, which is the project I'm proudest of because it now sits under everyone else's work.</p>
-    <p>Off the bench I build software for the same world: <a href="" target="_blank" rel="noopener">Ardic</a>, an AI copilot for cleanroom operations, and a chip I carried from Verilog to fabricated silicon. The throughline is the same — get close to the physical process, then make it more reliable and more legible. I'm aiming for hands-on fab and process work, and I learn fastest by shipping.</p>
-  </div>
-</section>
+<main class="wrap">
 
-<section id="work">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-no">02</span><h2 class="sec-title">Work</h2></div>
-    <p class="sec-sub">what I'm building · what I've shipped</p>
-
-    <p class="group-label">Currently</p>
-    <div class="cards">
-      <article class="card">
-        <div class="thumb"><img src="graphene.png" alt="Graphene-on-Au devices"></div>
-        <div class="body">
-          <span class="idx">/ active research</span>
-          <h3>Graphene&#8209;on&#8209;Au devices</h3>
-          <p class="role">VINSE × Caldwell Lab</p>
-          <p>Patterned graphene-on-gold electrodes for near-field (SNOM) and bolometric sensing. I handle the wet transfer and electrode lithography; the goal this year is one publishable artifact.</p>
-          <div class="stack"><span>CVD graphene</span><span>wet transfer</span><span>e&#8209;beam litho</span><span>SNOM</span></div>
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="mono" style="margin-bottom:16px;">NANOFABRICATION &amp; SEMICONDUCTOR ENGINEERING · VANDERBILT '28</p>
+        <h1>Graphene devices, the fabs that make them, and the tools that run the fab.</h1>
+        <p class="role">Senior cleanroom technician at <strong>VINSE</strong>, Vanderbilt's Class-100 nanofabrication facility. I run <strong>CVD, e-beam lithography, ALD, and RIE</strong>, and build software that makes fabs more reliable.</p>
+        <div class="cta-row">
+          <!-- TODO: point to your actual resume PDF -->
+          <a class="btn primary" href="/resume.pdf">Download résumé</a>
+          <a class="btn" href="mailto:REPLACE@vanderbilt.edu">Email me</a>
+          <div class="cta-links">
+            <!-- TODO: real profile URLs -->
+            <a href="https://www.linkedin.com/in/REPLACE">LinkedIn</a>
+            <a href="https://github.com/REPLACE">GitHub</a>
+          </div>
         </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="ebl.png" alt="CVD graphene line"></div>
-        <div class="body">
-          <span class="idx">/ process ownership</span>
-          <h3>CVD graphene line</h3>
-          <p class="role">VINSE cleanroom</p>
-          <p>Own the reactor end-to-end: growth, transfer, and qualification for the researchers who depend on it. Rebuilt the system and cut its leak rate ~10× (≈2.0 → 0.2 sccm/mTorr·min).</p>
-          <div class="stack"><span>CVD</span><span>vacuum</span><span>leak&#8209;down</span><span>profilometry</span></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="ardic.png" alt="Ardic"></div>
-        <div class="body">
-          <span class="idx">/ solo build</span>
-          <h3>Ardic</h3>
-          <p class="role">AI copilot for nanofab ops</p>
-          <p>Generates procedures, logs runs, and watches equipment for cleanrooms and small hardware teams. Built on Next.js and the Anthropic API.</p>
-          <div class="stack"><span>Next.js</span><span>Anthropic API</span><span>Vercel</span></div>
-          <a class="link" href="" target="_blank" rel="noopener">Live demo</a>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="my_chip.png" alt="4-bit shift register chip"></div>
-        <div class="body">
-          <span class="idx">/ silicon</span>
-          <h3>4&#8209;bit shift register</h3>
-          <p class="role">RTL → fabricated chip</p>
-          <p>Carried a design from Verilog through OpenLane and Sky130 to a real tapeout on Tiny Tapeout. Silicon on the way.</p>
-          <div class="stack"><span>Verilog</span><span>OpenLane</span><span>Sky130</span><span>Tiny Tapeout</span></div>
-        </div>
-      </article>
+      </div>
+      <figure class="portrait">
+        <img src="hero.jpg" alt="Sahpar Nil Özer">
+        <figcaption>VINSE cleanroom · Nashville, TN</figcaption>
+      </figure>
     </div>
 
-    <p class="group-label">Shipped</p>
-    <div class="cards">
-      <article class="card">
-        <div class="thumb ogs"><img src="go-engine.png" alt="MCTS Go engine game on OGS"></div>
-        <div class="body">
-          <span class="idx">/ game AI</span>
-          <h3>MCTS Go engine</h3>
-          <p class="role">from-scratch · pure Python</p>
-          <p>A ~450-line Monte Carlo Tree Search engine that speaks GTP and plays full 9×9 games live on OGS — clean enough that a KataGo-style review scores most of its moves Excellent or Great.</p>
-          <div class="stack"><span>Python</span><span>MCTS</span><span>GTP</span><span>OGS</span></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="anomaq.png" alt="AnomaQ"></div>
-        <div class="body">
-          <span class="idx">/ quantum ML · hackathon</span>
-          <h3>AnomaQ</h3>
-          <p class="role">led a team of 6 · built in 6 days</p>
-          <p>Quantum-kernel + one-class SVM anomaly detection. Hit 100% precision@25 on NASA turbofan pre-failure data and flagged a rogue unit #1.</p>
-          <div class="stack"><span>Qiskit</span><span>quantum kernel</span><span>one&#8209;class SVM</span></div>
-          <a class="link" href="https://anomaq.onrender.com" target="_blank" rel="noopener">Live demo</a>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="solar-cells.png" alt="Transparent organic solar cell"></div>
-        <div class="body">
-          <span class="idx">/ devices</span>
-          <h3>Transparent organic solar cell</h3>
-          <p class="role">prototype + investor pitch</p>
-          <p>A see-through organic photovoltaic stack — P3HT/PEDOT:PSS with graphene electrodes — built and pitched end to end.</p>
-          <div class="stack"><span>P3HT</span><span>PEDOT:PSS</span><span>graphene electrodes</span></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="syringe.png" alt="Precision syringe pump"></div>
-        <div class="body">
-          <span class="idx">/ mechatronics</span>
-          <h3>Precision syringe pump</h3>
-          <p class="role">design + closed-loop control</p>
-          <p>A lead-screw infusion pump for the DF2100 brief — Fusion 360 mechanics, NEMA 17 drive, Arduino closed-loop control.</p>
-          <div class="stack"><span>Fusion 360</span><span>Arduino</span><span>NEMA 17</span></div>
-        </div>
-      </article>
+    <div class="datastrip" role="list" aria-label="Key metrics">
+      <div class="cell" role="listitem"><span class="num">1,100+</span><span class="lbl">cleanroom hours</span></div>
+      <div class="cell" role="listitem"><span class="num">~10×</span><span class="lbl">CVD leak-rate reduction</span></div>
+      <div class="cell" role="listitem"><span class="num">4</span><span class="lbl">technicians supervised</span></div>
+      <div class="cell" role="listitem"><span class="num">1</span><span class="lbl">chip taped out (Sky130)</span></div>
     </div>
   </div>
-</section>
 
-<section id="roots">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-no">03</span><h2 class="sec-title">Foundations</h2></div>
-    <p class="sec-sub">research that got me here</p>
-    <ul class="roots">
-      <li><span class="yr">★</span><span class="what">NASA SpaceApps</span><span class="where">1st in Turkey, global finalist — 3D-printable Apollo-inspired toolkit, team of 7</span></li>
-      <li><span class="yr">·</span><span class="what">Galactic astrophysics</span><span class="where">UC Santa Cruz — 250 BPT diagrams across M33 &amp; Andromeda</span></li>
-      <li><span class="yr">·</span><span class="what">Exoplanet systems</span><span class="where">Plavchan group, George Mason / NASA</span></li>
-      <li><span class="yr">·</span><span class="what">Tissue microfabrication</span><span class="where">Bellan Lab for Advanced Materials, Vanderbilt</span></li>
-      <li><span class="yr">·</span><span class="what">Aerospace mesh optimization</span><span class="where">İTÜ, Istanbul</span></li>
-    </ul>
-  </div>
-</section>
-
-<section id="beyond">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-no">04</span><h2 class="sec-title">Beyond</h2></div>
-    <p class="sec-sub">the rest of me</p>
-    <div class="beyond-grid">
-      <div class="tile">
-        <div class="timg"><img src="go-club.jpg" alt="Go club"></div>
-        <div class="tbody"><span class="tag">Go / 囲碁</span><h4>Founded a board</h4>
-          <p>Started Turkey's first high-school Go club, taught 100+ students, and still compete internationally. It's where I learned to fail fast and read the whole board.</p></div>
-      </div>
-      <div class="tile">
-        <div class="timg"><img src="community.jpg" alt="Community"></div>
-        <div class="tbody"><span class="tag">Community</span><h4>Leading rooms</h4>
-          <p>President of the Turkish Undergraduate Student Association; also Delta Sigma Pi and Vanderbilt Motorsports.</p></div>
-      </div>
-      <div class="tile">
-        <div class="timg"><img src="pixel.png" alt="Pixel art"></div>
-        <div class="tbody"><span class="tag">Design</span><h4>Pixel &amp; Ghibli</h4>
-          <p>I build small, hand-crafted web things — including an interactive pixel-art cleanroom — somewhere between an engineering log and a Studio Ghibli still.</p></div>
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="sec-grid">
+      <div class="sec-label">Experience</div>
+      <div>
+        <div class="entry">
+          <div class="meta">VINSE — Vanderbilt Institute of Nanoscale Science &amp; Engineering<span class="sep">·</span>2024 — present</div>
+          <h3>Senior Cleanroom Technician</h3>
+          <p>Own the CVD graphene line end-to-end — growth, transfer, and qualification — in a Class-100 cleanroom supporting 20+ researchers. Run e-beam lithography, ALD, RIE, and precision metrology; train and supervise a team of four intern technicians. Rebuilt the CVD reactor and cut its leak rate roughly tenfold (≈2.0 → 0.2 sccm/mTorr·min).</p>
+          <span class="result">1,100+ hrs · CVD / EBL / ALD / RIE · leak rate ~10×↓</span>
+        </div>
+        <div class="entry">
+          <div class="meta">Caldwell Lab, Vanderbilt<span class="sep">·</span>2025 — present</div>
+          <h3>Undergraduate Researcher — Nanophotonics</h3>
+          <p>Patterned graphene-on-Au electrodes for near-field (SNOM) and bolometric sensing: CVD growth, wet transfer, and electrode lithography. Goal this year is one publishable artifact.</p>
+          <span class="result">graphene-on-Au · s-SNOM · publication track</span>
+        </div>
+        <div class="entry">
+          <div class="meta">Bellan Lab for Advanced Materials, Vanderbilt<span class="sep">·</span>2024</div>
+          <h3>Research Assistant — Microfabrication</h3>
+          <p>Microfabrication for engineered tissue platforms: photolithography, soft lithography, and sacrificial molding workflows.</p>
+        </div>
+        <div class="entry">
+          <div class="meta">Amazon<span class="sep">·</span>Nashville · Aug — Dec 2024</div>
+          <h3>Intern — Operations Communication Strategy</h3>
+          <p>Designed and shipped a workforce communication strategy adopted across five operations teams.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-no">05</span><h2 class="sec-title">Contact</h2></div>
-    <p class="big">Building something at the bench or on the wafer? <a href="mailto:you@email.com">Let's talk.</a></p>
-    <div class="clinks">
-      <a href="mailto:you@email.com">Email</a>
-      <a href="https://sahparozer.vercel.app" target="_blank" rel="noopener">Portfolio</a>
-      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#" target="_blank" rel="noopener">GitHub</a>
-      <a href="#" target="_blank" rel="noopener">Instagram</a>
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="sec-grid">
+      <div class="sec-label">Projects</div>
+      <div>
+        <p class="group-label">Currently</p>
+        <div class="cards">
+          <article class="card">
+            <div class="thumb"><img src="graphene.png" alt="Graphene-on-Au devices"></div>
+            <div class="body">
+              <div class="meta">VINSE × Caldwell Lab<span class="sep">·</span>active research</div>
+              <h3>Graphene-on-Au devices</h3>
+              <p>Patterned graphene-on-gold electrodes for near-field (SNOM) and bolometric sensing. I handle the wet transfer and electrode lithography.</p>
+              <span class="result">CVD · wet transfer · EBL · SNOM</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"><img src="ardic.png" alt="Ardic — AI copilot for nanofab operations"></div>
+            <div class="body">
+              <div class="meta">Founder<span class="sep">·</span>Next.js · Anthropic API</div>
+              <h3><a href="https://nilovi.vercel.app" target="_blank" rel="noopener">Ardic</a></h3>
+              <p>AI copilot for cleanroom operations: generates procedures, logs runs, and watches equipment — built from 1,100 hours of firsthand fab pain.</p>
+              <span class="result">live → nilovi.vercel.app</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"><img src="ebl.png" alt="CVD graphene line"></div>
+            <div class="body">
+              <div class="meta">VINSE cleanroom<span class="sep">·</span>process ownership</div>
+              <h3>CVD graphene line</h3>
+              <p>Own the reactor end-to-end: growth, transfer, and qualification for the researchers who depend on it.</p>
+              <span class="result">leak rate ≈2.0 → 0.2 sccm/mTorr·min</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"><img src="my_chip.png" alt="4-bit shift register chip"></div>
+            <div class="body">
+              <div class="meta">Tiny Tapeout<span class="sep">·</span>Verilog · OpenLane · Sky130</div>
+              <h3>4-bit shift register</h3>
+              <p>Carried a design from Verilog through the full open-source RTL-to-GDSII flow to a real tapeout. Silicon on the way.</p>
+              <span class="result">RTL → fabricated silicon</span>
+            </div>
+          </article>
+        </div>
+
+        <p class="group-label">Shipped</p>
+        <div class="cards">
+          <article class="card">
+            <div class="thumb"><img src="anomaq.png" alt="AnomaQ anomaly detection dashboard"></div>
+            <div class="body">
+              <div class="meta">Hackathon<span class="sep">·</span>led team of 6 · 6 days</div>
+              <h3><a href="https://anomaq.onrender.com" target="_blank" rel="noopener">AnomaQ</a></h3>
+              <p>Quantum-kernel + one-class SVM anomaly detection on NASA turbofan pre-failure data; flagged a rogue unit first.</p>
+              <span class="result">100% precision@25 · NASA C-MAPSS</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb ogs"><img src="go-engine.png" alt="MCTS Go engine playing on OGS"></div>
+            <div class="body">
+              <div class="meta">Personal<span class="sep">·</span>pure Python · ~450 lines</div>
+              <h3>MCTS Go engine</h3>
+              <p>From-scratch Monte Carlo Tree Search engine that speaks GTP and plays full 9×9 games live on OGS.</p>
+              <span class="result">most moves rated Excellent/Great (KataGo review)</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"><img src="solar-cells.png" alt="Transparent organic solar cell"></div>
+            <div class="body">
+              <div class="meta">Devices<span class="sep">·</span>prototype + pitch</div>
+              <h3>Transparent organic solar cell</h3>
+              <p>See-through organic photovoltaic stack — P3HT/PEDOT:PSS with graphene electrodes — built and pitched end to end.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"><img src="syringe.png" alt="Precision syringe pump"></div>
+            <div class="body">
+              <div class="meta">Mechatronics<span class="sep">·</span>Fusion 360 · Arduino</div>
+              <h3>Precision syringe pump</h3>
+              <p>Lead-screw infusion pump with NEMA 17 drive and closed-loop Arduino control, designed for the DF2100 brief.</p>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
-    <footer>© <span id="yr"></span> Sahpar Nil Özer · Nashville, TN · built from the cleanroom up</footer>
+  </section>
+
+  <!-- ============ FOUNDATIONS ============ -->
+  <section id="foundations">
+    <div class="sec-grid">
+      <div class="sec-label">Foundations</div>
+      <ul class="roots">
+        <li><span class="what">NASA SpaceApps — 1st in Turkey, global finalist</span><span class="where">3D-printable Apollo-inspired toolkit, team of 7</span></li>
+        <li><span class="what">Galactic astrophysics</span><span class="where">UC Santa Cruz — 250 BPT diagrams across M33 &amp; Andromeda</span></li>
+        <li><span class="what">Exoplanet systems</span><span class="where">Plavchan group, George Mason / NASA</span></li>
+        <li><span class="what">Aerospace mesh optimization</span><span class="where">İTÜ, Istanbul</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ BEYOND ============ -->
+  <section id="beyond">
+    <div class="sec-grid">
+      <div class="sec-label">Beyond</div>
+      <div class="beyond-grid">
+        <div class="tile">
+          <div class="timg"><img src="go-club.jpg" alt="Go club"></div>
+          <div class="tbody"><span class="tag">Go / 囲碁</span><h4>Founded a board</h4>
+            <p>Started Turkey's first high-school Go club, taught 100+ students, still compete internationally.</p></div>
+        </div>
+        <div class="tile">
+          <div class="timg"><img src="community.jpg" alt="Community leadership"></div>
+          <div class="tbody"><span class="tag">Community</span><h4>Leading rooms</h4>
+            <p>President of the Turkish Undergraduate Student Association; also Delta Sigma Pi and Vanderbilt Motorsports.</p></div>
+        </div>
+        <div class="tile">
+          <div class="timg"><img src="pixel.png" alt="Pixel art cleanroom"></div>
+          <div class="tbody"><span class="tag">Design</span><h4>Pixel &amp; Ghibli</h4>
+            <p>Small, hand-crafted web things — including an interactive pixel-art cleanroom.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="sec-grid">
+      <div class="sec-label">Contact</div>
+      <div>
+        <p class="contact-big">Open to Summer 2027 internships in process, fab, and semiconductor equipment engineering.</p>
+        <p class="contact-sub">Based in Nashville, TN. The fastest way to reach me is email — I reply within a day.</p>
+        <div class="cta-row" style="margin-top:22px;">
+          <a class="btn primary" href="mailto:REPLACE@vanderbilt.edu">REPLACE@vanderbilt.edu</a>
+          <div class="cta-links">
+            <a href="https://www.linkedin.com/in/REPLACE">LinkedIn</a>
+            <a href="https://github.com/REPLACE">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="mono">© <span id="yr"></span> Sahpar Nil Özer</span>
+    <span class="mono">Nashville, TN · EN / TR / DE · built from the cleanroom up</span>
   </div>
-</section>
+</footer>
 
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
