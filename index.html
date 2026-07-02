@@ -148,15 +148,18 @@
   .rail .rlabel{position:absolute;left:50%;transform:translateX(-50%);
     writing-mode:vertical-rl;font-family:"IBM Plex Mono",monospace;font-size:10px;
     letter-spacing:.18em;text-transform:uppercase;color:var(--steel);
-    background:var(--bg);padding:10px 2px}
+    background:var(--bg);padding:10px 2px;max-height:30vh;overflow:hidden;white-space:nowrap}
   .rail .rlabel.top{top:96px}
   .rail .rlabel.bottom{bottom:48px}
   /* litho bay: amber-lit segment on the right rail */
-  .rail .litho{position:absolute;left:0;right:0;top:34%;height:26%;
+  .rail .litho{position:absolute;left:0;right:0;top:42%;height:18%;
     background:linear-gradient(180deg,transparent,rgba(199,154,46,.16) 18%,rgba(199,154,46,.16) 82%,transparent);
     border-top:1px dashed rgba(169,106,0,.35);border-bottom:1px dashed rgba(169,106,0,.35)}
-  .rail .litho .rlabel{top:50%;transform:translate(-50%,-50%);color:#8A6210;background:transparent}
-  @media(min-width:900px){.rail{display:block}}
+  .rail .litho .rlabel{top:50%;transform:translate(-50%,-50%);color:#8A6210;background:#F3ECDC}
+  @media(min-width:900px){
+    .rail{display:block}
+    body{padding-left:56px;padding-right:56px}  /* keep content clear of the rails */
+  }
 
   /* ---------- FFU ceiling strip (always visible) ---------- */
   .ceiling{position:relative;height:26px;border-bottom:1px solid var(--hairline);
@@ -182,9 +185,9 @@
   <span class="rlabel bottom">Class 100 · ISO 5</span>
 </div>
 <div class="rail right" aria-hidden="true">
-  <span class="rlabel top">FFU-02 · laminar flow ↓</span>
-  <div class="litho"><span class="rlabel">litho bay · amber</span></div>
-  <span class="rlabel bottom">particle count · nominal</span>
+  <span class="rlabel top">FFU-02 ↓</span>
+  <div class="litho"><span class="rlabel">litho bay</span></div>
+  <span class="rlabel bottom">particles · nominal</span>
 </div>
 
 <div class="ceiling" aria-hidden="true">
