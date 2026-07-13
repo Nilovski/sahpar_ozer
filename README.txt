@@ -1,4 +1,4 @@
-SAHPAR NIL ÖZER — personal site
+SAHPAR NIL ÖZER - personal site
 ================================
 
 DEPLOY (same as any static site)
@@ -20,8 +20,6 @@ IMAGES
     syringe.png ......... project card, ~800x460
 - Any size works; the layout crops to fit. Same shape = best results.
 
-FILL IN THE BLANKS (edit index.html, search for these)
-    href="#"          -> your LinkedIn / GitHub / Instagram URLs
-    you@email.com     -> your email (appears twice)
-    the <blockquote>  -> swap the Go proverb for any line you like
-    the "Latest" pill -> repoint it as your newest work changes
+NOTE
+    The résumé button links to LinkedIn for now. When you have a PDF,
+    add it next to index.html and point the hero button at it.
