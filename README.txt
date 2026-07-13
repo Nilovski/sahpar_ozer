@@ -6,21 +6,18 @@ DEPLOY (same as any static site)
 - Or: put these files in a GitHub repo and import to Vercel/Netlify/GitHub Pages.
 - Keep index.html and the images/ folder together.
 
-ADD YOUR PHOTOS
-- Every image lives in images/. Each placeholder is labeled with its filename.
-- Replace a file with your own, keeping the SAME filename. Suggested sizes:
+IMAGES
+- Every image lives in the images/ folder.
+- To swap one, replace the file in images/ keeping the SAME filename:
     hero.jpg ............ portrait, ~760x940 (tall)
-    graphene-au.jpg ..... ~800x460 (wide)
-    cvd-line.jpg ........ ~800x460
-    ardic.png ........... Ardic UI screenshot, ~800x460
-    chip.jpg ............ ~800x460
-    go-engine.png ....... DONE — your OGS game (swap if you like)
-    anomaq.png .......... AnomaQ screenshot, ~800x460
-    solar-cell.jpg ...... ~800x460
-    syringe-pump.jpg .... ~800x460
-    go-club.jpg ......... ~640x420
-    community.jpg ....... ~640x420
-    pixel.png ........... ~640x420
+    graphene.png ........ project card, ~800x460 (wide)
+    ardic.png ........... project card, ~800x460
+    ebl.png ............. project card, ~800x460
+    my_chip.png ......... project card, ~800x460
+    anomaq.png .......... project card, ~800x460
+    go-engine.png ....... project card, ~800x460
+    solar-cells.png ..... project card, ~800x460
+    syringe.png ......... project card, ~800x460
 - Any size works; the layout crops to fit. Same shape = best results.
 
 FILL IN THE BLANKS (edit index.html, search for these)
