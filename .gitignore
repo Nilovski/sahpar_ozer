@@ -1,4 +1,0 @@
-# outreach app: local data and env stay out of git
-outreach/outreach.db
-outreach/.venv/
-__pycache__/
