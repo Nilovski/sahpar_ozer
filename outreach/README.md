@@ -1,76 +1,67 @@
-# Cold email outreach
+# Outreach — personal cold-email app
 
-A small mail-merge tool for personal outreach — recruiters, lab PIs,
-internship contacts. One Python file, no dependencies, sends through your
-Gmail account. Dry-run by default so you always see exactly what will go
-out before anything is sent.
+A local web app for running your outreach pipeline: contacts, templates,
+previews, sending through your Gmail, and follow-up tracking. One Python
+file + SQLite, runs on your machine only, nothing leaves except the
+emails you explicitly send.
 
-## One-time setup
+> This is an internal tool, not part of the portfolio site. The folder is
+> self-contained — move it to its own repo whenever you want.
 
-1. **Gmail App Password** (regular password won't work):
-   - Turn on 2-Step Verification on your Google account.
-   - Go to https://myaccount.google.com/apppasswords and create one
-     (name it "outreach"). You get a 16-character password.
-2. **Export credentials** in your terminal (or put in `~/.bashrc`):
-   ```bash
-   export GMAIL_ADDRESS="you@gmail.com"
-   export GMAIL_APP_PASSWORD="abcd efgh ijkl mnop"
-   ```
-3. **Create your contact list:**
-   ```bash
-   cp contacts.example.csv contacts.csv
-   ```
-   Then fill in real people. Columns:
-   | column | used for |
-   |---|---|
-   | `name` | To: header; `{first_name}` in templates |
-   | `first_name` | optional greeting override — leave blank to use the first word of `name`; set it for professors ("Prof. Smith") |
-   | `email` | recipient address |
-   | `org` | `{org}` in templates |
-   | `role` | `{role}` — what you're asking about ("process engineering internship") |
-   | `personal_line` | `{personal_line}` — the one sentence that proves you didn't blast this. **Write it per person.** This is what gets replies. |
-
-   `contacts.csv` and `sent_log.csv` are gitignored — real names and
-   emails never end up in the repo.
-
-## Daily use
+## Run it
 
 ```bash
-python3 send.py                    # dry run: prints every rendered email
-python3 send.py --send             # send them (asks you to type 'send')
-python3 send.py --send --attach resume.pdf --limit 15
+cd outreach
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+
+export GMAIL_ADDRESS="you@gmail.com"
+export GMAIL_APP_PASSWORD="xxxx xxxx xxxx xxxx"
+
+.venv/bin/python app.py
+# → open http://127.0.0.1:5000
 ```
 
-Every send is recorded in `sent_log.csv`. Re-running never emails the
-same person the same template twice, so you can keep adding rows to
-`contacts.csv` and re-running.
+The app works without the Gmail variables — you just can't send until
+they're set. To get an App Password: turn on 2-Step Verification, then
+create one at https://myaccount.google.com/apppasswords. Credentials are
+read from the environment only and never stored in the database.
 
-**Follow-ups** — after ~5 days with no reply:
+All data lives in `outreach.db` next to `app.py` (gitignored, so contact
+names and emails never end up in git).
 
-```bash
-python3 send.py --template followup --min-days-since 5 --send
-```
+## The workflow
 
-When someone replies, put `y` in the `replied` column of `sent_log.csv`
-and the tool stops emailing them entirely.
+1. **Contacts** — add people one at a time or import a CSV
+   (`name, first_name, email, org, role, personal_line, notes`; only
+   email required). The `personal_line` is the one sentence about *their*
+   work that proves the email isn't a blast — write it per person, it's
+   what gets replies. `first_name` overrides the greeting for cases like
+   "Prof. Smith".
+2. **Compose** — pick a template, see every eligible contact with their
+   fully rendered email, uncheck anyone, and hit send. "Send one test to
+   myself" delivers the first preview to your own inbox first.
+3. **Dashboard** — pipeline counts, plus a "follow-ups due" queue:
+   contacted people with no reply after N days (default 5, adjustable in
+   Settings). One click composes the follow-up round; one click marks
+   someone as replied.
+4. **Contact pages** — every email ever sent to a person, their stage,
+   editable details.
 
-## Editing templates
+Stages move automatically: sending an initial email moves someone from
+*To contact* → *Contacted*, a second send → *Followed up*. You flip
+people to *Replied* or *Closed* yourself, and the app never emails
+anyone in those stages again. It also never sends the same template to
+the same person twice, so re-sending a batch is always safe.
 
-Templates live in `templates/*.txt`: first line is the subject, then a
-blank line, then the body. Placeholders in `{braces}` map to CSV columns,
-plus `{first_name}` (derived from `name`) and `{my_name}`. Add a new
-template as `templates/whatever.txt` and use `--template whatever`.
+## Guardrails built in
 
-## Staying effective (and out of spam folders)
-
-- **Volume:** keep it to ~15–25/day (the `--limit` default is 20). Gmail
-  throttles bulk senders, and small batches with real personalization
-  outperform blasts anyway. The tool already pauses ~1 minute between
-  sends (`--delay`).
-- **Personalize:** a generic `personal_line` is worse than none. One
-  specific sentence about *their* work is the highest-leverage thing here.
-- **One follow-up, maybe two.** If someone asks you to stop, mark them
-  `replied` so they're never contacted again.
-- This is for individual professional outreach (job search, research
-  contacts). Don't use it for commercial bulk email — that has legal
-  requirements (CAN-SPAM, GDPR) this tool doesn't implement.
+- Batches cap at 25 emails, with a 2–5 s pause between sends — small,
+  personalized batches keep you out of Gmail's bulk-sender throttling
+  and get better reply rates anyway.
+- Everything is previewed exactly as it will send; a template with a
+  typo'd `{placeholder}` fails loudly instead of sending broken emails.
+- The app binds to 127.0.0.1 only — it's yours, not on the network.
+- This is for individual professional outreach (jobs, labs, research).
+  Commercial bulk email has legal requirements (CAN-SPAM, GDPR) this
+  deliberately doesn't implement.
