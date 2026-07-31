@@ -1,0 +1,15 @@
+Subject: Cleanroom engineer (CVD/EBL) interested in {org}
+
+Hi {first_name},
+
+{personal_line}
+
+I'm a senior cleanroom tech at VINSE, Vanderbilt's Class-100 nanofabrication facility, where I own the CVD graphene line end to end and run e-beam lithography, ALD, and RIE — about 1,100 hours of hands-on fab time so far. Recent highlights: rebuilt our CVD reactor and cut its leak rate roughly 10x, taped out a chip on Sky130, and I build software that makes fabs more reliable.
+
+I'd love to talk about {role} work at {org}. Would you have 15 minutes in the next week or two?
+
+My work, with photos and numbers: https://www.linkedin.com/in/sahpar-ozer/
+
+Thanks for your time,
+{my_name}
+Vanderbilt '28 - Nashville, TN

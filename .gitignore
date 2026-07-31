@@ -1,0 +1,4 @@
+# real contact data and send history stay local
+outreach/contacts.csv
+outreach/sent_log.csv
+__pycache__/
